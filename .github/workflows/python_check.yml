@@ -24,16 +24,16 @@ jobs:
     - name: Analysing the code with pylint
       continue-on-error: true
       run: |
-        pylint $(git ls-files '*.py')
+        pylint $(git ls-files 'class_route_api/*.py')
     - name: Analysing the code with yapf
       continue-on-error: true
       run: |
-        yapf -d $(git ls-files '*.py')
+        yapf -d $(git ls-files 'class_route_api/*.py')
     - name: Analysing the imports with isort 
       continue-on-error: true
       run: |
-        isort -c $(git ls-files '*.py')
+        isort -c $(git ls-files 'class_route_api/*.py')
     - name: Pyright type check
       continue-on-error: true
       run: |
-        pyright $(git ls-files '*.py')
+        pyright $(git ls-files 'class_route_api/*.py')
