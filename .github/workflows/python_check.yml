@@ -1,6 +1,8 @@
-name: Pylint
+name: Python Code Check
 
-on: [push]
+on: 
+  push:
+    paths: ["class_route_api/*.py"]
 
 jobs:
   build:
@@ -21,3 +23,12 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
+    - name: Analysing the code with yapf
+      run: |
+        yapf $(git ls-files '*.py')
+    - name: Analysing the imports with isort 
+      run: |
+        isort -c $(git ls-files '*.py')
+    - name: Pyright type check
+      run: |
+        pyright $(git ls-files '*.py')
