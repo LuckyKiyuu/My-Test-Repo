@@ -14,7 +14,7 @@ jobs:
         yarn install
     - name: Analysing the code with ESLint
       run: |
-        eslint src --ext .js,.jsx,.ts,.tsx
+        yarn eslint src --ext .js,.jsx,.ts,.tsx
     - name: Flow type check
       run: |
-        flow src
+        yarn flow src
