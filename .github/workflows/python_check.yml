@@ -28,7 +28,7 @@ jobs:
     - name: Analysing the code with yapf
       continue-on-error: true
       run: |
-        yapf $(git ls-files '*.py')
+        yapf -d $(git ls-files '*.py')
     - name: Analysing the imports with isort 
       continue-on-error: true
       run: |
