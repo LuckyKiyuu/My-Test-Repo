@@ -10,21 +10,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Report flow coverage
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v34
-
-      - name: Install flow-bin
-        run: |
-          yarn add flow-bin
-
-      - name: Flow coverage check
-        runs: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            yarn flow coverage $file
-          done
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v34
+    - name: Install flow-bin
+      run: |
+        yarn add flow-bin
+    - name: Flow coverage check
+      runs: |
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          yarn flow coverage $file
+        done
