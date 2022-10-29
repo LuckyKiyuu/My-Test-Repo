@@ -2,8 +2,10 @@ name: Flow Coverage Report
 
 on:
   push:
-    paths: ["src/*.js"]
-    paths-ignore: ["src/index.js", "src/setupProxy.js"]
+    paths: 
+      - "src/*.js"
+      - "!src/index.js"
+      - "!src/setupProxy.js"
 
 jobs:
   build:
