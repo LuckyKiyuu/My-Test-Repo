@@ -3,9 +3,16 @@ adsf
 '''
 
 
+def get_str(string: str):
+    '''
+    ads
+    '''
+    return string
+
+
 def hello():
     '''
     asdf
     '''
-    snake = 1
+    snake = get_str(123)
     print('hello')

@@ -76,8 +76,7 @@
     "*.js": "eslint --fix",
     "*.py": [
       "yapf -i",
-      "isort",
-      "pylint"
+      "isort"
     ]
   }
 }
