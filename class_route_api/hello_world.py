@@ -3,7 +3,7 @@ adsf
 '''
 
 
-def get_str(string):
+def get_str(string: str):
     '''
     ads
     '''
@@ -14,5 +14,5 @@ def hello():
     '''
     asdf
     '''
-    snake = 123
+    snake = get_str(123)
     print('hello')
