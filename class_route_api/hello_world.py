@@ -7,7 +7,7 @@ def get_str(string):
     '''
     ads
     '''
-    return string    # type: ignore
+    return string
 
 
 def hello():
