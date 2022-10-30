@@ -24,7 +24,7 @@ jobs:
       run: |
         coverage_report=""
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          if [ $file != "src/setupProxy.js" || $file != *.js ]; then
+          if [[ $file != "src/setupProxy.js" &&  $file == *.js ]]; then
             # setupProxy.js is not covered by flow.
             coverage_report=$coverage_report"\n"$file$(yarn flow coverage --quiet $file | grep -o ": .*")
           fi
@@ -33,8 +33,7 @@ jobs:
     
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1.5.0
-      if: |
-        ${{ env.COVERAGE_REPORT }} != ""
+      if: ${{ env.COVERAGE_REPORT }} != ""
       with:
         message: |
           Flow Coverage Report:${{ env.COVERAGE_REPORT }}
