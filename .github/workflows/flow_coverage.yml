@@ -36,5 +36,5 @@ jobs:
     - name: Run flow coverage on changed files
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          yarn flow coverage $file
+          echo "$file"$(yarn flow coverage --quiet src/Aaa.react.js | grep -o ": .*")
         done
