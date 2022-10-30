@@ -31,7 +31,7 @@ jobs:
           fi
         done
         echo $coverage_report
-        echo "COVERAGE_REPORT=$coverage_report" >> $GITHUB_ENV
+        echo "COVERAGE_REPORT=$(echo $coverage_report)" >> $GITHUB_ENV
     
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1.5.0
