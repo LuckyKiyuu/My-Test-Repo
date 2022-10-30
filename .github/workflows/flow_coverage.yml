@@ -27,7 +27,7 @@ jobs:
           if [[ $file != "src/setupProxy.js" &&  $file == *.js ]]; then
             # setupProxy.js is not covered by flow.
             #coverage_report=$coverage_report$file$(yarn flow coverage --quiet $file | awk -F ': ' '{print $2}')"<br />"
-            coverage_report=$coverage_report"<br />"$file$(yarn flow coverage --quiet $file | grep -o ": .*")
+            coverage_report=$coverage_report"<br />| $file | $(yarn flow coverage --quiet $file | grep -o ": .*") |"
           fi
         done
         echo $coverage_report
