@@ -21,7 +21,7 @@ jobs:
 
     - name: Run flow coverage on changed files
       run: |
-        coverage_report="Flow coverage report:"
+        coverage_report=""
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           if [ $file != "src/setupProxy.js" || $file != *.js ]; then
             # setupProxy.js is not covered by flow.
@@ -32,6 +32,8 @@ jobs:
     
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1.5.0
+      if: |
+        ${{ env.COVERAGE_REPORT }} != ""
       with:
         message: |
-          ${{ env.COVERAGE_REPORT }}
+          Flow Coverage Report:${{ env.COVERAGE_REPORT }}
