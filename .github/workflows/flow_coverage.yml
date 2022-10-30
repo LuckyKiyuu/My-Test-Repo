@@ -19,8 +19,18 @@ jobs:
       id: changed-files
       uses: tj-actions/changed-files@v34
 
-    - name: List all changed files
+    - name: Install modules
+      run: |
+        yarn install
+
+    # - name: List all changed files
+    #   run: |
+    #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+    #       echo "$file was changed"
+    #     done
+
+    - name: Run flow coverage on changed files
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "$file was changed"
+          yarn flow coverage $file
         done
