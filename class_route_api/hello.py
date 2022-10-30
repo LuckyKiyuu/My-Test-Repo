@@ -2,6 +2,9 @@
 adsf
 '''
 
+import time
+import click
+
 
 def get_str(string: str):
     '''
