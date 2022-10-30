@@ -23,7 +23,7 @@ jobs:
 
     - name: Run flow coverage on changed files
       run: |
-        coverage_res=""
+        coverage_res="Flow coverage report:"
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           if [ $file != "src/setupProxy.js" ]; then
             # setupProxy.js is not covered by flow.
