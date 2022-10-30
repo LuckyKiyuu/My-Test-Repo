@@ -4,17 +4,15 @@ on:
   push:
     paths: ["src/*.js"]
 
-
 jobs:
   build:
-    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    runs-on: ubuntu-latest
     name: Test changed-files
     steps:
     - uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+        fetch-depth: 0
 
-    # Example 1
     - name: Get changed files
       id: changed-files
       uses: tj-actions/changed-files@v34
@@ -23,18 +21,13 @@ jobs:
       run: |
         yarn install
 
-    # - name: List all changed files
-    #   run: |
-    #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-    #       echo "$file was changed"
-    #     done
-    
-    - name: Start flow server
-      run: |
-        yarn flow start
-
     - name: Run flow coverage on changed files
       run: |
+        coverage_res=""
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "$file"$(yarn flow coverage --quiet src/Aaa.react.js | grep -o ": .*")
+          if [ $file != "src/setupProxy.js" ]; then
+            # setupProxy.js is not covered by flow.
+            coverage_res=$coverage_res"\n"$file$(yarn flow coverage --quiet $file | grep -o ": .*")
+          fi
         done
+        echo $coverage_res
