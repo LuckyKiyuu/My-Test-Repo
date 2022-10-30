@@ -2,27 +2,35 @@ name: Flow Coverage Report
 
 on:
   push:
-    paths: 
-      - "src/*.js"
-      - "!src/index.js"
-      - "!src/setupProxy.js"
+    paths: ["src/*.js"]
+
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    name: Report flow coverage
+    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    name: Test changed-files
     steps:
     - uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+    # Example 1
     - name: Get changed files
       id: changed-files
       uses: tj-actions/changed-files@v34
-    - name: Install flow-bin
+
+    - name: Install modules
       run: |
-        yarn add flow-bin
-    - name: Flow coverage check
-      runs: |
+        yarn install
+
+    # - name: List all changed files
+    #   run: |
+    #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+    #       echo "$file was changed"
+    #     done
+
+    - name: Run flow coverage on changed files
+      run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           yarn flow coverage $file
         done
