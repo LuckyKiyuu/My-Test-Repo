@@ -28,7 +28,13 @@ jobs:
     #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
     #       echo "$file was changed"
     #     done
+    
+    - name: Start flow server
+      run: |
+        yarn flow start
 
     - name: Run flow coverage on changed files
       run: |
-        yarn flow batch-coverage ${{ steps.changed-files.outputs.all_changed_files }}
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          yarn flow coverage $file
+        done
