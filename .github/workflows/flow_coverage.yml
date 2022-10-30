@@ -29,6 +29,7 @@ jobs:
             coverage_report=$coverage_report"$file: $(yarn flow coverage --quiet $file | awk -F ': ' '{print $2}')<br />"
           fi
         done
+        echo $coverage_report
         echo "COVERAGE_REPORT=$coverage_report" >> $GITHUB_ENV
     
     - name: Comment PR
