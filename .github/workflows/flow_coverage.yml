@@ -32,6 +32,14 @@ jobs:
         done
         echo $coverage_report
         echo "COVERAGE_REPORT=$(echo $coverage_report)" >> $GITHUB_ENV
+        
+    - uses: actions/github-script@v6
+      id: set-result
+      with:
+        script: |
+          console.log(env.COVERAGE_REPORT)
+          return "hi";
+        result-encoding: string
     
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1.5.0
