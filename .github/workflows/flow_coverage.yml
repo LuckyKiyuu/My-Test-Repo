@@ -25,7 +25,7 @@ jobs:
       run: |
         coverage_report="Flow coverage report:"
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          if [ $file != "src/setupProxy.js" ]; then
+          if [ $file != "src/setupProxy.js" || $file != *.js ]; then
             # setupProxy.js is not covered by flow.
             coverage_report=$coverage_report"\n"$file$(yarn flow coverage --quiet $file | grep -o ": .*")
           fi
