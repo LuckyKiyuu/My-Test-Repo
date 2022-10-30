@@ -41,7 +41,5 @@ jobs:
         message: |
           Flow Coverage Report
           -----
-          | File | Coverage |
-          | ---- | -------- |
           ${{ env.COVERAGE_REPORT }}
         comment_includes: 'Flow Coverage Report'
