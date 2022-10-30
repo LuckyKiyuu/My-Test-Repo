@@ -31,4 +31,4 @@ jobs:
 
     - name: Run flow coverage on changed files
       run: |
-        yarn flow coverage ${{ steps.changed-files.outputs.all_changed_files }}
+        yarn flow batch-coverage ${{ steps.changed-files.outputs.all_changed_files }}
