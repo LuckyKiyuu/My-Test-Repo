@@ -28,8 +28,9 @@ jobs:
             # setupProxy.js is not covered by flow.
             # coverage_report=$coverage_report$file$(yarn flow coverage --quiet $file | grep -o ": .*")
             coverage_report=$coverage_report$(cat <<- END
-              | $file | $(yarn flow coverage --quiet $file | grep -o ": .*") |
-            END)
+                | $file | $(yarn flow coverage --quiet $file | grep -o ": .*") |
+              END
+            )
           fi
         done
         echo "COVERAGE_REPORT=$coverage_report" >> $GITHUB_ENV
