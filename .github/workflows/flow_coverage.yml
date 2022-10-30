@@ -29,7 +29,7 @@ jobs:
             coverage_report=$coverage_report"\\n"$file$(yarn flow coverage --quiet $file | grep -o ": .*")
           fi
         done
-        echo "COVERAGE_REPORT=$(echo $coverage_report)" >> $GITHUB_ENV
+        echo "COVERAGE_REPORT=$coverage_report" >> $GITHUB_ENV
     
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1.5.0
