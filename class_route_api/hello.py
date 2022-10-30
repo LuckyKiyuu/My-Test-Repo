@@ -11,8 +11,6 @@ def get_str(string: str):
     ads
     '''
     return string    # type: ignore
-
-
 def hello():
     '''
     asdf
