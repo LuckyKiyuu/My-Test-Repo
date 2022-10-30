@@ -26,7 +26,7 @@ jobs:
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           if [[ $file != "src/setupProxy.js" &&  $file == *.js ]]; then
             # setupProxy.js is not covered by flow.
-            coverage_report="$coverage_report"\\n|"$file$"|"(yarn flow coverage --quiet $file | grep -o ": .*")"|"
+            coverage_report=$coverage_report"\\n|"$file$"|"(yarn flow coverage --quiet $file | grep -o ": .*")"|"
           fi
         done
         echo "COVERAGE_REPORT=$coverage_report" >> $GITHUB_ENV
@@ -40,4 +40,4 @@ jobs:
           | File | Coverage |
           | ---- | -------- |
           ${{ env.COVERAGE_REPORT }}
-        comment_includes: 'Flow Coverage Report:'
+        comment_includes: 'Flow Coverage Report'
