@@ -73,10 +73,15 @@
   },
   "lint-staged": {
     "*.{js,md,json}": "prettier --write",
-    "*.js": "eslint --fix",
+    "*.js": [
+      "eslint --fix",
+      "flow"
+    ],
     "*.py": [
       "yapf -i",
-      "isort"
+      "isort",
+      "pylint",
+      "pyright"
     ]
   }
 }
